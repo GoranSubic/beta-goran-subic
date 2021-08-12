@@ -1,0 +1,37 @@
+first_one.route_parent:
+  title: Parent Menu Example for Route One
+  route_name: first_one.route_parent
+  expanded: TRUE
+
+first_one.route_one:
+  title: First route One
+  route_name: first_one.route_one
+  parent: first_one.route_parent
+  menu_name: firstone
+  weight: 10
+
+#first_one.route_one_count:
+#  title: First route One
+#  url: '/the/one/11'
+#  parent: route_parent
+
+first_one.route_content:
+  title: First route One - Content
+  route_name: first_one.route_content
+  parent: first_one.route_parent
+  menu_name: firstone
+  weight: 20
+
+first_one.webform_count:
+  title: First route One - Webform
+  route_name: first_one.webform_count
+  parent: first_one.route_parent
+  menu_name: firstone
+  weight: 30
+
+first_one.webform_tweak_count:
+  title: First route One - Webform using Tweak
+  route_name: first_one.webform_tweak_count
+  parent: first_one.route_parent
+  menu_name: firstone
+  weight: 40

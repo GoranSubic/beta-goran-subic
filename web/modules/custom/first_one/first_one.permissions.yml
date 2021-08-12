@@ -1,0 +1,14 @@
+'delete contact entity':
+  title: Delete entity content
+  description: Allows users to delete contacts.
+'add contact entity':
+  title: Add entity content
+'view contact entity':
+  title: View entity content
+'edit contact entity':
+  title: Edit entity content
+  description: Allows users to edit contacts.
+'administer contact entity':
+  title: Administer settings
+  description: Allows users to alter the settings related to contacts.
+  restrict access: TRUE
