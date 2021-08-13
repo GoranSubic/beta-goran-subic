@@ -1,0 +1,107 @@
+<?php
+
+/**
+ * @file
+ * Implementing functionalities from tutorials and examples.
+ *
+ * @author Goran Subić
+ *
+ * @version 0.1
+ */
+
+use \Drupal\first_one\Controller\FirstOneController;
+use \Drupal\webform\Entity\WebformSubmission;
+
+/**
+ * Implements hook_theme().
+ */
+function first_one_theme($existing, $type, $theme, $path) {
+  $first_one = [];
+  // Name of the theme hook. This is used in the controller to trigger the hook.
+  $first_one['parent_one'] = [
+    'render element' => 'children',
+    // If no template name is defined here, it defaults to the name of the theme hook, ie. module-name-theme-hook.html.twig
+      'template' => 'parent-one',
+    // Optionally define path to Twig template files. Defaults to the module's ./templates/ directory.
+    'path' => $path . '/templates',
+    // Optionally define variables that will be passed to the Twig template and set default values for them.
+    'variables' => [
+      'variable1' => 'Yet another default text.',
+      'variable2' => 0,
+      'variable3' => [0, 0, 0],
+    ],
+  ];
+
+  $first_one['first_one'] = [
+    'render element' => 'children',
+    // If no template name is defined here, it defaults to the name of the theme hook, ie. module-name-theme-hook.html.twig
+//      'template' => 'first-one',
+    // Optionally define path to Twig template files. Defaults to the module's ./templates/ directory.
+    'path' => $path . '/templates',
+    // Optionally define variables that will be passed to the Twig template and set default values for them.
+    'variables' => [
+      'variable1' => 'Yet another default text.',
+      'variable2' => 0,
+      'variable3' => [0, 0, 0],
+    ],
+  ];
+
+  $first_one['first_one_count'] = [
+    'render element' => 'children',
+    // If no template name is defined here, it defaults to the name of the theme hook, ie. module-name-theme-hook.html.twig
+    'template' => 'first-one-count',
+    // Optionally define path to Twig template files. Defaults to the module's ./templates/ directory.
+    'path' => $path . '/templates',
+    // Optionally define variables that will be passed to the Twig template and set default values for them.
+    'variables' => [
+      'variable1' => 'Yet another default text.',
+      'variable2' => 0,
+      'variable3' => [0, 0, 0],
+      'variable4' => 0,
+    ],
+  ];
+
+  $first_one['first_one_count_webf'] = [
+    'render element' => 'children',
+    // If no template name is defined here, it defaults to the name of the theme hook, ie. module-name-theme-hook.html.twig
+    'template' => 'first-one-count-webf',
+    // Optionally define path to Twig template files. Defaults to the module's ./templates/ directory.
+    'path' => $path . '/templates',
+    // Optionally define variables that will be passed to the Twig template and set default values for them.
+    'variables' => [
+      'variable1' => 'Yet another default text.',
+      'variable2' => 0,
+      'variable4' => 0,
+    ],
+  ];
+
+  $first_one['first_one_count_webf_tweak'] = [
+    'render element' => 'form',
+    // If no template name is defined here, it defaults to the name of the theme hook, ie. module-name-theme-hook.html.twig
+    'template' => 'first-one-count-webf-tweak',
+    // Optionally define path to Twig template files. Defaults to the module's ./templates/ directory.
+    'path' => $path . '/templates',
+    // Optionally define variables that will be passed to the Twig template and set default values for them.
+    'variables' => [
+      'variable1' => 'Yet another default text.',
+      'variable3' => [0, 0, 0],
+    ],
+  ];
+
+  return $first_one;
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_presave().
+ */
+function first_one_webform_submission_presave(WebformSubmission $submission) {
+  if ($submission->getWebform()->id() == 'counting_parameter') {
+    $number = $submission->getElementData('number_for_counting');
+
+    // Use helper method to calculate data for counted_numbers field.
+    $controller = new FirstOneController();
+    $countedNumbers = $controller->countForMe($number);
+
+    $submission->setElementData('counted_numbers', $countedNumbers[1]);
+  }
+}

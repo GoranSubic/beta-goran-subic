@@ -1,0 +1,10 @@
+name: First One
+description: A silly example module
+type: module
+core_version_requirement: ^8 || ^9
+package: Practice
+
+dependencies:
+  - drupal:node
+  - webform:webform
+  - drupal:twig_tweak

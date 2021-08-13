@@ -1,0 +1,41 @@
+first_one.route_parent:
+  path: '/the/one'
+  defaults:
+    _controller: 'Drupal\first_one\Controller\FirstOneController::parent'
+  requirements:
+    _permission: 'access content'
+
+first_one.route_one:
+  path: '/the/one/first'
+  defaults:
+    _controller: 'Drupal\first_one\Controller\FirstOneController::one'
+  requirements:
+    _permission: 'access content'
+
+first_one.route_one_count:
+  path: '/the/one/first/{count}'
+  defaults:
+    _controller: 'Drupal\first_one\Controller\FirstOneController::count'
+  requirements:
+    _permission: 'access content'
+
+first_one.webform_count:
+  path: '/the/one/webform'
+  defaults:
+    _controller: 'Drupal\first_one\Controller\FirstOneController::countWebForm'
+  requirements:
+    _permission: 'access content'
+
+first_one.webform_tweak_count:
+  path: '/the/one/webform-tweak'
+  defaults:
+    _controller: 'Drupal\first_one\Controller\FirstOneController::countWebFormTweak'
+  requirements:
+    _permission: 'access content'
+
+first_one.route_content:
+  path: '/the/one/content'
+  defaults:
+    _controller: 'Drupal\first_one\Controller\FirstOneController::content'
+  requirements:
+    _permission: 'access content'
