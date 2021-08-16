@@ -1,0 +1,8 @@
+name: Node Goto
+description: Finds available node by ID.
+type: module
+core_version_requirement: ^8 || ^9
+package: Practice
+
+dependencies:
+  - drupal:node
