@@ -1,0 +1,7 @@
+my_coupons.coupon_list:
+  path: '/user/{user}/my-coupons'
+  defaults:
+    _controller: 'Drupal\my_coupons\Controller\MyCouponsController::index'
+    _title: 'My coupons'
+  requirements:
+    _user_is_logged_in: 'TRUE'

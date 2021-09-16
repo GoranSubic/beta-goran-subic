@@ -1,0 +1,10 @@
+name: My coupons
+description: My coupons page is a listing page, it lists all the coupons the currently logged in user has access to.
+type: module
+core_version_requirement: ^8.9 || ^9
+package: Practice
+
+dependencies:
+  - drupal:node
+  - drupal:text
+  - drupal:user
