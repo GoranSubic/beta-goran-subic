@@ -1,0 +1,34 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.coupon.field_code
+    - field.field.node.coupon.field_description
+    - field.field.node.coupon.field_user_access
+    - node.type.coupon
+  module:
+    - text
+    - user
+_core:
+  default_config_hash: BtS7lF8C-kK3dl1GRmAi4BNwCpzspNGEgovzpzAc6_o
+id: node.coupon.teaser
+targetEntityType: node
+bundle: coupon
+mode: teaser
+content:
+  field_description:
+    weight: 103
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  links:
+    weight: 100
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_code: true
+  field_user_access: true

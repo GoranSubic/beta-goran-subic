@@ -1,0 +1,54 @@
+<?php
+
+/**
+ * @file
+ * Main module file of My Coupons.
+ */
+
+declare(strict_types = 1);
+
+use Drupal\Core\Access\AccessResultInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\Access\AccessResult;
+
+/**
+ * Implements hook_ENTITY_TYPE_access().
+ */
+function my_coupons_node_access(EntityInterface $entity, string $operation, AccountInterface $account): AccessResultInterface {
+  // Only apply to the 'coupon' entities.
+  if ($entity->bundle() !== 'coupon') {
+    return AccessResult::neutral();
+  }
+
+  /* Attempt to allow access to entities for:
+   administrators; the user referenced with field_user_access;*/
+  if (in_array('administrator', $account->getRoles(), TRUE)) {
+    return AccessResult::allowed()
+      ->cachePerUser()
+      ->addCacheableDependency($entity);
+  }
+
+  if (
+    !$account->isAuthenticated() ||
+    $operation === 'update' ||
+    $operation === 'delete' ||
+    !$entity->isPublished()
+  ) {
+    return AccessResult::forbidden()
+      ->cachePerUser()
+      ->addCacheableDependency($entity);
+  }
+
+  foreach ($entity->get('field_user_access')->getValue() as $user) {
+    if ($account->id() === $user['target_id']) {
+      return AccessResult::allowed()
+        ->cachePerUser()
+        ->addCacheableDependency($entity);
+    }
+  }
+
+  return AccessResult::forbidden()
+    ->cachePerUser()
+    ->addCacheableDependency($entity);
+}

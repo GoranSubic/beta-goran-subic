@@ -1,0 +1,17 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - my_coupons
+  enforced:
+    module:
+      - my_coupons
+_core:
+  default_config_hash: YpYe9pf8G_W29U9sGJ-CjVvCGfoiLWImIxBNP6FZYbI
+name: Coupon
+type: coupon
+description: 'Use <em>Coupon</em> content to get to create coupons for users.'
+help: ''
+new_revision: false
+preview_mode: 1
+display_submitted: true

@@ -1,0 +1,5 @@
+my_coupons.users_tab:
+  route_name: my_coupons.coupon_list
+  title: 'My coupons'
+  base_route: entity.user.canonical
+  weight: 100
